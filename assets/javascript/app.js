@@ -1,9 +1,13 @@
 //array for buttons
-var topics = ["Spongebob", "Pepe", "Doggo", "Cato", "Bamboozled"];
+var topics = ["Spongebob", "Pepe", "Doggo", "Cat", "Kermit"];
 
 var topic;
 
 var state = "still";
+
+// var imgClicked;
+//
+// var gifs = [];
 
 $(document).ready(function() {
     renderButton();
@@ -19,6 +23,8 @@ function renderButton() {
 $(document).on("click", ".topic", function() {
     $("#gifs").empty();
     topic = $(this).text();
+    state = "still";
+    gifs = [];
     console.log(topic);
     
     //api key
@@ -31,9 +37,9 @@ $(document).on("click", ".topic", function() {
         url: queryURL,
         method: "GET"
     }).done(function(response) {
-        console.log(response);
         
         var results = response.data;
+        console.log(results);
         
         for (var i = 0; i < results.length; i++) {
             
@@ -50,27 +56,26 @@ $(document).on("click", ".topic", function() {
             p.text("Rating: " + results[i].rating);
     
             image.attr("src", imgUrlStill);
-        
             
             resultDiv.append(image);
             resultDiv.append(p);
             
             $("#gifs").prepend(resultDiv);
-            
+            //
+            // gifs.push(results[i]);
+            // console.log(gifs);
         }
     
         $(".image").on("click", function() {
-            console.log("image clicked");
-            console.log(state + " outside if statement");
+            console.log(imgClicked);
+            
             if (state === "still") {
                 image.attr("src", imgUrl);
                 state = "animate";
-                console.log(state + " inside if statement");
             }
             else {
                 image.attr("src", imgUrlStill);
                 state = "still";
-                console.log(state + " inside else statement");
             }
         });
     
