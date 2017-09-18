@@ -74,19 +74,33 @@ $(document).on("click", ".topic", function() {
     
         $(".image").on("click", function() {
             
-            imgClicked = stillArray.indexOf($(this).attr("src"));
-            console.log(imgClicked + " imgClicked value");
+        
             
             imgState = $(this).data();
             console.log(imgState);
             
-            if (imgState === "still" ) {
+            if (state === imgState.state ) {
+                //imgClicked is set to it's still gif in the array
+                imgClicked = stillArray.indexOf($(this).attr("src"));
+                console.log(imgClicked + " imgClicked value");
+                
                 console.log("yay it's moving");
+                $(this).attr("src", movingArray[imgClicked]);
+                
                 imgState = $(this).data("state", "animate");
+                
+                imgClicked = movingArray.indexOf($(this).attr("src"));
+                console.log(imgClicked + " imgClicked value inside the if statement");
             }
             else {
+                imgClicked = movingArray.indexOf($(this).attr("src"));
                 console.log("now i'ts still");
+                
+                $(this).attr("src", stillArray[imgClicked]);
+                
                 imgState = $(this).data("state", "still");
+                
+                imgClicked = stillArray.indexOf($(this).attr("src"));
             }
         });
         console.log("button click");
@@ -96,10 +110,11 @@ $(document).on("click", ".topic", function() {
 
 //adds new buttons
 $("#submit").on("click", function() {
-    $("#buttons").empty();
    var newTopic = $("#new-topic").val();
-   topics.push(newTopic);
-   if ((topics.indexOf(newTopic) > -1)) {
+    topics.push(newTopic);
+    console.log(newTopic);
+   if ((topics.indexOf(newTopic) > -1) && (newTopic !== " ")) {
+       $("#buttons").empty();
        renderButton();
        $("#new-topic").val(" ");
    }
