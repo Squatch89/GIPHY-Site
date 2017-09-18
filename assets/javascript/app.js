@@ -5,9 +5,13 @@ var topic;
 
 var state = "still";
 
-// var imgClicked;
-//
-// var gifs = [];
+var imgState;
+
+var imgClicked;
+
+var stillArray = [];
+
+var movingArray = [];
 
 $(document).ready(function() {
     renderButton();
@@ -24,7 +28,8 @@ $(document).on("click", ".topic", function() {
     $("#gifs").empty();
     topic = $(this).text();
     state = "still";
-    gifs = [];
+    stillArray = [];
+    movingArray = [];
     console.log(topic);
     
     //api key
@@ -56,29 +61,34 @@ $(document).on("click", ".topic", function() {
             p.text("Rating: " + results[i].rating);
     
             image.attr("src", imgUrlStill);
+            image.data("state", "still");
             
             resultDiv.append(image);
             resultDiv.append(p);
             
             $("#gifs").prepend(resultDiv);
-            //
-            // gifs.push(results[i]);
-            // console.log(gifs);
+            
+            stillArray.push(results[i].images.fixed_height_still.url);
+            movingArray.push(results[i].images.fixed_height.url);
         }
     
         $(".image").on("click", function() {
-            console.log(imgClicked);
             
-            if (state === "still") {
-                image.attr("src", imgUrl);
-                state = "animate";
+            imgClicked = stillArray.indexOf($(this).attr("src"));
+            console.log(imgClicked + " imgClicked value");
+            
+            imgState = $(this).data();
+            console.log(imgState);
+            
+            if (imgState === "still" ) {
+                console.log("yay it's moving");
+                imgState = $(this).data("state", "animate");
             }
             else {
-                image.attr("src", imgUrlStill);
-                state = "still";
+                console.log("now i'ts still");
+                imgState = $(this).data("state", "still");
             }
         });
-    
         console.log("button click");
     });
 });
@@ -89,8 +99,9 @@ $("#submit").on("click", function() {
     $("#buttons").empty();
    var newTopic = $("#new-topic").val();
    topics.push(newTopic);
-   if (topics.indexOf(newTopic) > -1) {
+   if ((topics.indexOf(newTopic) > -1)) {
        renderButton();
+       $("#new-topic").val(" ");
    }
 });
 
