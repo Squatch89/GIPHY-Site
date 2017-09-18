@@ -111,12 +111,12 @@ $(document).on("click", ".topic", function() {
 //adds new buttons
 $("#submit").on("click", function() {
    var newTopic = $("#new-topic").val();
-    topics.push(newTopic);
     console.log(newTopic);
-   if ((topics.indexOf(newTopic) > -1) && (newTopic !== " ")) {
+   if ((topics.indexOf(newTopic) < 0) && (newTopic !== "") ) {
+       topics.push(newTopic);
        $("#buttons").empty();
        renderButton();
-       $("#new-topic").val(" ");
+       $("#new-topic").val("");
    }
 });
 
