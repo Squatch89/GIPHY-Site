@@ -11,6 +11,9 @@ button {
     margin-top: 5px;
 }
 
+button:hover {
+    background-color: #03396c;
+}
 .gif-container {
     margin-top: 15px;
     display: flex;
@@ -29,26 +32,3 @@ button {
     float: left;
     margin-top: 10px;
 }
-
-
-/*p {*/
-    /*display: inline;*/
-    /*width: 20%;*/
-/*}*/
-
-/*.image {*/
-    /*display: inline;*/
-    /*width: 20%*/
-/*}*/
-
-/*#gifs {*/
-    /*float: left;*/
-    /*display: inline;*/
-    /*width: 75%;*/
-    /*background-color: white;*/
-/*}*/
-
-/*#add-new {*/
-    /*float: left;*/
-    /*width: 25%;*/
-/*}*/
