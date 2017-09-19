@@ -48,11 +48,11 @@ $(document).on("click", ".topic", function() {
         
         for (var i = 0; i < results.length; i++) {
             
-            var resultDiv = $("<div>");
+            var resultDiv = $("<span id='img-holder'>");
             
             var imgUrlStill = results[i].images.fixed_height_still.url;
             
-            var imgUrl = results[i].images.fixed_height.url;
+            // var imgUrl = results[i].images.fixed_height.url;
     
             var p = $("<p>");
     
