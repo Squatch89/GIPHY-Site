@@ -22,9 +22,11 @@ button:hover {
 
 p {
     color: #aaaaaa;
+    margin-bottom: 5px;
 }
 
 footer {
+    font-family: 'Rubik', sans-serif;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -34,6 +36,7 @@ footer {
     z-index: 10;
     text-align: center;
     color: white;
+    font-size: 16px;
 }
 
 .container {
@@ -67,3 +70,7 @@ footer {
     margin-top: 10px;
 }
 
+#footer-p {
+    margin-top: 17px;
+    color: white;
+}
